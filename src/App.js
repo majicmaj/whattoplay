@@ -5,6 +5,7 @@ import "./styles.css";
 export default function App() {
   const [player1, setPlayer1] = useState("282795444");
   const key = process.env.KEY || "NOKEY";
+  let userData = {};
 
   useEffect(
     () => () => {
@@ -19,7 +20,7 @@ export default function App() {
             "&format=json",
           { mode: "no-cors" }
         )
-        .then(r => console.log(r))
+        .then(r => (userData = r))
         .catch(err => {
           console.error("error: " + err);
         });
@@ -32,7 +33,9 @@ export default function App() {
       <div className="player">
         <h1>player 1:</h1>
         <p>id: {player1}</p>
-        <button onClick={() => setPlayer1("282795444")} />
+        <button onClick={() => setPlayer1("282795444")}> NO CLICKY </button>
+        <button onClick={() => console.log(userData)}>CONSOLE</button>
+        <p>{userData.toString() || "wow"}</p>
       </div>
     </div>
   );
