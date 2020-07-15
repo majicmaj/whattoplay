@@ -16,11 +16,16 @@ export default function App() {
       }
     ]
   });
-  const key = process.env.KEY || "NOKEY";
+  console.log(process.env.NODE_ENV);
+  let key = "";
+  if (process.env.NODE_ENV === "development") {
+    key = "NOKEY";
+  } else {
+    key = process.env.REACT_APP_STEAM_KEY || "NOKEY";
+  }
 
   useEffect(() => {
     console.log("here");
-    console.log(process);
     axios
       .get(
         "https://cors-anywhere.herokuapp.com/" +
@@ -44,7 +49,7 @@ export default function App() {
     <div className="App">
       <div className="player">
         <h1>player 1:</h1>
-        <p>version: 3</p>
+        <p>version: 4</p>
         <p>id: {player1}</p>
         <button onClick={() => setPlayer1("76561197960434622")}>
           NO CLICKY
