@@ -32,7 +32,8 @@ export default function App() {
         )
         .then(r => {
           setUserData(r.response);
-          console.log(r.response);
+          console.log("returned!");
+          console.log(r);
         })
         .catch(err => {
           console.error("error: " + err);
