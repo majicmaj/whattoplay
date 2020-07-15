@@ -31,7 +31,10 @@ export default function App() {
             "&format=json",
           { mode: "no-cors" }
         )
-        .then(r => setUserData(r.response))
+        .then(r => {
+          setUserData(r.response);
+          console.log(r.response);
+        })
         .catch(err => {
           console.error("error: " + err);
         });
@@ -48,6 +51,31 @@ export default function App() {
           NO CLICKY
         </button>
         <button onClick={() => console.log(userData)}>CONSOLE</button>
+        <button
+          onClick={() =>
+            setUserData({
+              games_count: 2,
+              games: [
+                {
+                  appid: 10,
+                  playtime_forever: 32,
+                  playtime_windows_forever: 0,
+                  playtime_mac_forever: 0,
+                  playtime_linux_forever: 0
+                },
+                {
+                  appid: 11,
+                  playtime_forever: 32,
+                  playtime_windows_forever: 0,
+                  playtime_mac_forever: 0,
+                  playtime_linux_forever: 0
+                }
+              ]
+            })
+          }
+        >
+          Change data
+        </button>
         <p>Games Count:{userData.games_count}</p>
 
         {userData.games.map(game => (
