@@ -3,8 +3,19 @@ import axios from "axios";
 import "./styles.css";
 
 export default function App() {
-  const [player1, setPlayer1] = useState("282795444");
-  const [userData, setUserData] = useState({});
+  const [player1, setPlayer1] = useState("76561197960434622");
+  const [userData, setUserData] = useState({
+    games_count: 0,
+    games: [
+      {
+        appid: 10,
+        playtime_forever: 32,
+        playtime_windows_forever: 0,
+        playtime_mac_forever: 0,
+        playtime_linux_forever: 0
+      }
+    ]
+  });
   const key = process.env.KEY || "NOKEY";
 
   useEffect(
@@ -20,7 +31,7 @@ export default function App() {
             "&format=json",
           { mode: "no-cors" }
         )
-        .then(r => setUserData(r))
+        .then(r => setUserData(r.response))
         .catch(err => {
           console.error("error: " + err);
         });
@@ -33,9 +44,15 @@ export default function App() {
       <div className="player">
         <h1>player 1:</h1>
         <p>id: {player1}</p>
-        <button onClick={() => setPlayer1("282795444")}> NO CLICKY </button>
+        <button onClick={() => setPlayer1("76561197960434622")}>
+          NO CLICKY
+        </button>
         <button onClick={() => console.log(userData)}>CONSOLE</button>
-        <p>{userData.toString() || "wow"}</p>
+        <p>Games Count:{userData.games_count}</p>
+
+        {userData.games.map(game => (
+          <p>ID: {game.appid}</p>
+        ))}
       </div>
     </div>
   );
