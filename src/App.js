@@ -37,7 +37,7 @@ export default function App() {
       )
       .then(r => {
         console.log(r);
-        setUserData(r);
+        setUserData(r.data.response);
         console.log("returned!");
       })
       .catch(err => {
