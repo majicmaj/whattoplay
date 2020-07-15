@@ -36,9 +36,9 @@ export default function App() {
           "&format=json"
       )
       .then(r => {
-        setUserData(r.response);
-        console.log("returned!");
         console.log(r);
+        setUserData(r);
+        console.log("returned!");
       })
       .catch(err => {
         console.error("error: " + err);
