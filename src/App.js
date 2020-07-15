@@ -5,24 +5,27 @@ import "./styles.css";
 export default function App() {
   const [player1, setPlayer1] = useState("282795444");
   const key = process.env.KEY || "NOKEY";
-  getUser = id => {
-    console.log(id);
-    axios
-      .get(
-        "https://cors-anywhere.herokuapp.com/" +
-          "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=" +
-          key +
-          "&steamid=" +
-          id +
-          "&format=json",
-        { mode: "no-cors" }
-      )
-      .then(r => console.log(r))
-      .catch(err => {
-        console.error("error: " + err);
-      });
-  };
-  useEffect(() => getUser(player1), [player1]);
+
+  useEffect(
+    () => () => {
+      console.log(player1);
+      axios
+        .get(
+          "https://cors-anywhere.herokuapp.com/" +
+            "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=" +
+            key +
+            "&steamid=" +
+            player1 +
+            "&format=json",
+          { mode: "no-cors" }
+        )
+        .then(r => console.log(r))
+        .catch(err => {
+          console.error("error: " + err);
+        });
+    },
+    [key, player1]
+  );
 
   return (
     <div className="App">
