@@ -27,6 +27,15 @@ export default function App() {
     axios
       .get(
         "https://cors-anywhere.herokuapp.com/" +
+          "http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=" +
+          key +
+          "&vanityurl=userVanityUrlName=" +
+          "/EnergeticGaming"
+      )
+      .then(r => console.log(r.data));
+    axios
+      .get(
+        "https://cors-anywhere.herokuapp.com/" +
           "https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=" +
           key +
           "&steamid=" +
