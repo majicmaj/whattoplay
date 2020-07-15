@@ -28,8 +28,7 @@ export default function App() {
             key +
             "&steamid=" +
             player1 +
-            "&format=json",
-          { mode: "no-cors" }
+            "&format=json"
         )
         .then(r => {
           setUserData(r.response);
