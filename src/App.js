@@ -4,8 +4,8 @@ import "./styles.css";
 
 export default function App() {
   const [player1, setPlayer1] = useState("282795444");
+  const [userData, setUserData] = useState({});
   const key = process.env.KEY || "NOKEY";
-  let userData = {};
 
   useEffect(
     () => () => {
@@ -20,7 +20,7 @@ export default function App() {
             "&format=json",
           { mode: "no-cors" }
         )
-        .then(r => (userData = r))
+        .then(r => setUserData(r))
         .catch(err => {
           console.error("error: " + err);
         });
