@@ -20,6 +20,7 @@ export default function App() {
 
   useEffect(() => {
     console.log("here");
+    console.log(process.env);
     axios
       .get(
         "https://cors-anywhere.herokuapp.com/" +
@@ -43,7 +44,7 @@ export default function App() {
     <div className="App">
       <div className="player">
         <h1>player 1:</h1>
-        <p>version: 1</p>
+        <p>version: 2</p>
         <p>id: {player1}</p>
         <button onClick={() => setPlayer1("76561197960434622")}>
           NO CLICKY
