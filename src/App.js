@@ -32,6 +32,7 @@ export default function App() {
       <div className="player">
         <h1>player 1:</h1>
         <p>id: {player1}</p>
+        <button onClick={() => setPlayer1("282795444")} />
       </div>
     </div>
   );
