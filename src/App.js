@@ -64,6 +64,7 @@ export default function App() {
         <p>id: {player1}</p>
 
         <button onClick={() => console.log(userData)}>CONSOLE</button>
+        <button onClick={() => setPlayer1("majeemaj")}>player</button>
         <p>Games Count:{userData.games_count}</p>
 
         {userData.games.map(game => (
