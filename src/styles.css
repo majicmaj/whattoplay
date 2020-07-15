@@ -2,3 +2,18 @@
   font-family: sans-serif;
   text-align: center;
 }
+.App .games {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.App .game {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 8px #00000020;
+}

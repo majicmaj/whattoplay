@@ -16,28 +16,30 @@ export default function App() {
       }
     ]
   });
-  console.log(process.env.NODE_ENV);
   let key = "";
   if (process.env.NODE_ENV === "development") {
-    key = "NOKEY";
+    key = process.env.REACT_APP_STEAM_KEY || "NOKEYDEV";
   } else {
     key = process.env.REACT_APP_STEAM_KEY || "NOKEY";
   }
 
   useEffect(() => {
-    console.log("here");
     axios
       .get(
         "https://cors-anywhere.herokuapp.com/" +
-          "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=" +
+          "https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=" +
           key +
           "&steamid=" +
           player1 +
           "&format=json"
       )
       .then(r => {
-        console.log(r);
-        setUserData(r.data.response);
+        console.log(r.data.response);
+        if (r.data.response.games !== undefined) {
+          setUserData(r.data.response);
+        } else {
+          console.error("games data returned undefined");
+        }
         console.log("returned!");
       })
       .catch(err => {
@@ -51,35 +53,8 @@ export default function App() {
         <h1>player 1:</h1>
         <p>version: 4</p>
         <p>id: {player1}</p>
-        <button onClick={() => setPlayer1("76561197960434622")}>
-          NO CLICKY
-        </button>
+
         <button onClick={() => console.log(userData)}>CONSOLE</button>
-        <button
-          onClick={() =>
-            setUserData({
-              games_count: 2,
-              games: [
-                {
-                  appid: 10,
-                  playtime_forever: 32,
-                  playtime_windows_forever: 0,
-                  playtime_mac_forever: 0,
-                  playtime_linux_forever: 0
-                },
-                {
-                  appid: 11,
-                  playtime_forever: 32,
-                  playtime_windows_forever: 0,
-                  playtime_mac_forever: 0,
-                  playtime_linux_forever: 0
-                }
-              ]
-            })
-          }
-        >
-          Change data
-        </button>
         <p>Games Count:{userData.games_count}</p>
 
         {userData.games.map(game => (
